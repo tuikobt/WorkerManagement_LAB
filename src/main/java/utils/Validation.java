@@ -1,17 +1,12 @@
 package utils;
 
-import java.util.Scanner;
-
 public class Validation {
 
-    private static final Scanner sc = new Scanner(System.in);
-
     //Check limit input
-    public static int checkInputIntLimit(String s, int min, int max) {
+    public static int checkInputIntLimit(String input,int min, int max) {
         while(true) {
-            System.out.print(s);
             try {
-                int res = Integer.parseInt(sc.nextLine().trim());
+                int res = Integer.parseInt(input.trim());
                 if (res < min || res > max) {
                     System.err.println("Input must be in range [" + min + ", " + max + "]");
                     continue;
@@ -24,10 +19,9 @@ public class Validation {
     }
 
     //Check string empty
-    public static String checkInputString(String s) {
+    public static String checkInputString(String input) {
         while(true) {
-            System.out.print(s);
-            String res = sc.nextLine().trim();
+            String res = input.trim();
             if (res.isEmpty()) {
                 System.err.println("Input cannot be empty");
                 continue;
@@ -37,11 +31,10 @@ public class Validation {
     }
 
     //Check salary
-    public static int checkInputPositiveAmount(String s) {
+    public static int checkInputPositiveAmount(String input) {
         while(true) {
-            System.out.print(s);
             try {
-                int res = Integer.parseInt(sc.nextLine().trim());
+                int res = Integer.parseInt(input.trim());
                 if (res < 0) {
                     System.err.println("Salary must be greater than 0");
                     continue;
@@ -54,7 +47,7 @@ public class Validation {
     }
 
     //Check age
-    public static int checkInputAge(String s){
-        return checkInputIntLimit(s, 18, 50);
+    public static int checkInputAge(String input) {
+        return checkInputIntLimit(input,18, 50);
     }
 }

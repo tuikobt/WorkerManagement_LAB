@@ -75,7 +75,11 @@ public class Workers {
         salaryHistories.add(history);
     }
 
-    public String toString(SalaryHistory history) {
-        return String.format("%s %-10s %-5d %-30s\n", getId(), getName(), getAge(), history.toString());
+    public String toString() {
+        String result = "";
+        for (SalaryHistory history : getSalaryHistories()) {
+            result = result.concat(String.format("%s %-10s %-5d %-30s\n", getId(), getName(), getAge(), history.toString()));
+        }
+        return result;
     }
 }

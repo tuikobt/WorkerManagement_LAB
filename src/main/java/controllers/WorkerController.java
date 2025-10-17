@@ -26,6 +26,11 @@ public class WorkerController {
     }
 
     public void addWorker(WorkerDTO dto) throws SystemException {
+        for (Workers existingWorker : workers) {
+            if (existingWorker.getId().equals(dto.getId())) {
+                throw new SystemException("Worker ID already exists: " + dto.getId());
+            }
+        }
         Workers worker = new Workers(dto.getId(), dto.getName(), dto.getAge(), dto.getSalary(), dto.getLocaton());
         workers.add(worker);
     }
@@ -43,19 +48,10 @@ public class WorkerController {
     }
 
     public void displayInformation() throws SystemException {
-        boolean hasChange = false;
         StringBuilder body = new StringBuilder();
 
-        for (Workers w : workers) {
-            for (SalaryHistory h : w.getSalaryHistories()) {
-                if (h.getStatus().toString().equals("UP") || h.getStatus().toString().equals("DOWN")) {
-                    body.append(w.toString(h));
-                    hasChange = true;
-                }
-            }
-        }
-        if (!hasChange) {
-            throw new SystemException("No salary changes found.");
+        for (Workers worker : workers) {
+            body.append(worker.toString());
         }
         view.setHeader(Messages.DISPLAY_HEADER);
         view.setBody(body.toString());

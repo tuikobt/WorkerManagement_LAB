@@ -32,5 +32,4 @@ public class WorkerServiceImpl implements IWorkerService{
         worker.setSalary(newSalary);
         worker.addSalaryHistory(new SalaryHistory(newSalary, LocalDateTime.now(), SalaryStatus.DOWN));
     }
-
 }
